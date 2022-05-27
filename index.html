@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <h1>Battleships</h1>
+    
+    <input id="userName" type="text" name="" placeholder="Enter Name">
+    <button id="clickMe" type="button" name="button">Click Me</button>
+    <h2 id="playerResult"></h2>
+    <h2 id="computerResult"></h2>
+    <h2 id="gameOutcome"></h2>
+    
+    <div class="container">
+        <h1>Battleships</h1>
+        <section class="game">
+            <section class="board my-board">
+                <h2>Your Board</h2>
+                <section id="my-board">
+                  <div></div>
+              
+                </section>
+            </section>
+            <section class="board computer-board">
+                <h2>Computer</h2>
+                <table>
+                    <tr class="table-heading">
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                        <td class="cell-heading"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                    <tr class="table-tow">
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                        <td class="table-cell"></td>
+                    </tr>
+                </table>
+            </section>
+        </section>
+    </div>
+    
+
+    <script type="text/javascript" src="/js/main.js"></script>
+  </body>
+</html>
