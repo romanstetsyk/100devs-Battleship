@@ -22,11 +22,21 @@ class Board {
   constructor(h, w) {
     this.height = h;
     this.width = w;
+    // All cells. for a 10x10 board there are 100 cells
     this.allCells = [];
+    // All cells with ships in them and cells that surrond the ships
     this.blockedCells = [];
+    // Array of all ships, e.g [ ['0-0','0-1','0,2'], ['5-5','5-6'] ]
     this.ships = [];
+    // Ships that were not hit. It equals to all ships at the start of the game
+    this.availShips = [];
+    // Array of cells that your opponent missed.
+    this.misses = [];
+    // Array of cells that your opponent hit.
+    this.hits = [];
   }
   // Sets the list of all cells and available cells. The size of the array is h*w
+  // This is a helper method for .randomBoard method
   initBoardSize() {
     for (let i = 0; i < this.height; i += 1) {
       for (let j = 0; j < this.width; j += 1) {
@@ -34,7 +44,8 @@ class Board {
       }
     }
   }
-
+  // Generates a random board. The array is the sizes of ships.
+  // e.g. [5,4,3,3] means 1 ship of 5 squares, 1 ship of 4 squares, and 2 ships of 3 squares.
   randomBoard(ArrayOfShipSizes) {
     this.allCells = [];
     this.blockedCells = [];
@@ -42,7 +53,7 @@ class Board {
     this.initBoardSize();
     ArrayOfShipSizes.map(e => this.placeShip(e));
   }
-
+  // helper method for .randomBoard. 
   placeShip(shipSize) {
     // Returns the random number between 0 and n inclusive
     // rand(1) means a random number 0 or 1
@@ -102,7 +113,28 @@ class Board {
       })
     }
     this.ships.push(shipCells);
+    this.availShips.push(shipCells);
     return
+  }
+  // Check if the cell clicked by the opponent contains a ship and update availShips, hits, and misses
+  checkAndUpdate(coord) {
+    // Check each ship for the coordinate.
+    // if found update the hits, if not found update the misses
+    let isFound = false;
+    this.availShips.map(e => {
+      e.forEach((elem, index, arr) => {
+        if (elem === coord) {
+          isFound = true;
+          this.hits.push(coord);
+          arr.splice(index, 1);
+        }
+      })
+    })
+    if (!isFound) {
+      this.misses.push(coord);
+    }
+    // return true if hit, false if missed
+    return isFound;
   }
 }
 
