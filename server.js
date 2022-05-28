@@ -152,7 +152,14 @@ const server = http.createServer((req, res) => {
     }
 
     if('makeShot' in params) {
-      // receive the coordinates 'x-y'
+      // This condition is true if the player clicks on any square on the computer's board.
+      // It receives the coordinates 'x-y' as a parameter
+      // check if the 'x-y' is in the computer.ships array
+      // Send back the response object 
+      // // {
+      //  coord: 'x-y',
+      //  result: 'hit' or 'miss' 
+      // }
     }
 
     if('student' in params){
