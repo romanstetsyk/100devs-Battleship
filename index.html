@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>DONT GET GOT!</title>
+    <link rel="stylesheet" href="/public/style.css">
   </head>
   <body>
     <h1>Battleships</h1>
@@ -14,168 +14,316 @@
     <h2 id="computerResult"></h2>
     <h2 id="gameOutcome"></h2>
     
-    <div class="container">
-        <h1>Battleships</h1>
+     <div class="container">
         <section class="game">
+            <!-- ------------------------Start of Player Board------------------------ -->
             <section class="board my-board">
                 <h2>Your Board</h2>
-                <section id="my-board">
-                  <div></div>
-              
+                <section id="player-board">
+                    <section class="column" id="rowNumber">
+                        <div id="rowBlank"></div>
+                        <div id="row1">1</div>
+                        <div id="row2">2</div>
+                        <div id="row3">3</div>
+                        <div id="row4">4</div>
+                        <div id="row5">5</div>
+                        <div id="row6">6</div>
+                        <div id="row7">7</div>
+                        <div id="row8">8</div>
+                        <div id="row9">9</div>
+                        <div id="row10">10</div>
+                    </section>
+                    <section class="column" id="columnA">
+                        <div class="columnLetter">A</div>
+                        <div id="a1"></div>
+                        <div id="a2"></div>
+                        <div id="a3"></div>
+                        <div id="a4"></div>
+                        <div id="a5"></div>
+                        <div id="a6"></div>
+                        <div id="a7"></div>
+                        <div id="a8"></div>
+                        <div id="a9"></div>
+                        <div id="a10"></div>
+                    </section>
+                    <section class="column" id="columnB">
+                        <div class="columnLetter">B</div>
+                        <div id="b1"></div>
+                        <div id="b2"></div>
+                        <div id="b3"></div>
+                        <div id="b4"></div>
+                        <div id="b5"></div>
+                        <div id="b6"></div>
+                        <div id="b7"></div>
+                        <div id="b8"></div>
+                        <div id="b9"></div>
+                        <div id="b10"></div>
+                    </section>
+                    <section class="column" id="columnC">
+                        <div class="columnLetter">C</div>
+                        <div id="c1"></div>
+                        <div id="c2"></div>
+                        <div id="c3"></div>
+                        <div id="c4"></div>
+                        <div id="c5"></div>
+                        <div id="c6"></div>
+                        <div id="c7"></div>
+                        <div id="c8"></div>
+                        <div id="c9"></div>
+                        <div id="c10"></div>
+                    </section>
+                    <section class="column" id="columnD">
+                        <div class="columnLetter">D</div>
+                        <div id="d1"></div>
+                        <div id="d2"></div>
+                        <div id="d3"></div>
+                        <div id="d4"></div>
+                        <div id="d5"></div>
+                        <div id="d6"></div>
+                        <div id="d7"></div>
+                        <div id="d8"></div>
+                        <div id="d9"></div>
+                        <div id="d10"></div>
+                    </section>
+                    <section class="column" id="columnE">
+                        <div class="columnLetter">E</div>
+                        <div id="e1"></div>
+                        <div id="e2"></div>
+                        <div id="e3"></div>
+                        <div id="e4"></div>
+                        <div id="e5"></div>
+                        <div id="e6"></div>
+                        <div id="e7"></div>
+                        <div id="e8"></div>
+                        <div id="e9"></div>
+                        <div id="e10"></div>
+                    </section>
+                    <section class="column" id="columnF">
+                        <div class="columnLetter">F</div>
+                        <div id="f1"></div>
+                        <div id="f2"></div>
+                        <div id="f3"></div>
+                        <div id="f4"></div>
+                        <div id="f5"></div>
+                        <div id="f6"></div>
+                        <div id="f7"></div>
+                        <div id="f8"></div>
+                        <div id="f9"></div>
+                        <div id="f10"></div>
+                    </section>
+                    <section class="column" id="columnG">
+                        <div class="columnLetter">G</div>
+                        <div id="g1"></div>
+                        <div id="g2"></div>
+                        <div id="g3"></div>
+                        <div id="g4"></div>
+                        <div id="g5"></div>
+                        <div id="g6"></div>
+                        <div id="g7"></div>
+                        <div id="g8"></div>
+                        <div id="g9"></div>
+                        <div id="g10"></div>
+                    </section>
+                    <section class="column" id="columnH">
+                        <div class="columnLetter">H</div>
+                        <div id="h1"></div>
+                        <div id="h2"></div>
+                        <div id="h3"></div>
+                        <div id="h4"></div>
+                        <div id="h5"></div>
+                        <div id="h6"></div>
+                        <div id="h7"></div>
+                        <div id="h8"></div>
+                        <div id="h9"></div>
+                        <div id="h10"></div>
+                    </section>
+                    <section class="column" id="columnI">
+                        <div class="columnLetter">I</div>
+                        <div id="i1"></div>
+                        <div id="i2"></div>
+                        <div id="i3"></div>
+                        <div id="i4"></div>
+                        <div id="i5"></div>
+                        <div id="i6"></div>
+                        <div id="i7"></div>
+                        <div id="i8"></div>
+                        <div id="i9"></div>
+                        <div id="i10"></div>
+                    </section>
+                    <section class="column" id="columnJ">
+                        <div class="columnLetter">J</div>
+                        <div id="j1"></div>
+                        <div id="j2"></div>
+                        <div id="j3"></div>
+                        <div id="j4"></div>
+                        <div id="j5"></div>
+                        <div id="j6"></div>
+                        <div id="j7"></div>
+                        <div id="j8"></div>
+                        <div id="j9"></div>
+                        <div id="j10"></div>
+                    </section>
                 </section>
             </section>
+            <!-- ------------------------End of Player Board------------------------ -->
+
+            <!-- ------------------------Start of Computer Board------------------------ -->
             <section class="board computer-board">
-                <h2>Computer</h2>
-                <table>
-                    <tr class="table-heading">
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                        <td class="cell-heading"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                    <tr class="table-tow">
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                        <td class="table-cell"></td>
-                    </tr>
-                </table>
+                <h2>Computer Board</h2>
+                <section id="computer-board">
+                    <section class="column" id="rowNumberC">
+                        <div id="rowBlank"></div>
+                        <div id="row1C">1</div>
+                        <div id="row2C">2</div>
+                        <div id="row3C">3</div>
+                        <div id="row4C">4</div>
+                        <div id="row5C">5</div>
+                        <div id="row6C">6</div>
+                        <div id="row7C">7</div>
+                        <div id="row8C">8</div>
+                        <div id="row9C">9</div>
+                        <div id="row10C">10</div>
+                    </section>
+                    <section class="column" id="columnAcomputer">
+                        <div class="columnLetter">A</div>
+                        <div id="A1"></div>
+                        <div id="A2"></div>
+                        <div id="A3"></div>
+                        <div id="A4"></div>
+                        <div id="A5"></div>
+                        <div id="A6"></div>
+                        <div id="A7"></div>
+                        <div id="A8"></div>
+                        <div id="A9"></div>
+                        <div id="A10"></div>
+                    </section>
+                    <section class="column" id="columnBcomputer">
+                        <div class="columnLetter">B</div>
+                        <div id="B1"></div>
+                        <div id="B2"></div>
+                        <div id="B3"></div>
+                        <div id="B4"></div>
+                        <div id="B5"></div>
+                        <div id="B6"></div>
+                        <div id="B7"></div>
+                        <div id="B8"></div>
+                        <div id="B9"></div>
+                        <div id="B10"></div>
+                    </section>
+                    <section class="column" id="columnCcomputer">
+                        <div class="columnLetter">C</div>
+                        <div id="C1"></div>
+                        <div id="C2"></div>
+                        <div id="C3"></div>
+                        <div id="C4"></div>
+                        <div id="C5"></div>
+                        <div id="C6"></div>
+                        <div id="C7"></div>
+                        <div id="C8"></div>
+                        <div id="C9"></div>
+                        <div id="C10"></div>
+                    </section>
+                    <section class="column" id="columnDcomputer">
+                        <div class="columnLetter">D</div>
+                        <div id="D1"></div>
+                        <div id="D2"></div>
+                        <div id="D3"></div>
+                        <div id="D4"></div>
+                        <div id="D5"></div>
+                        <div id="D6"></div>
+                        <div id="D7"></div>
+                        <div id="D8"></div>
+                        <div id="D9"></div>
+                        <div id="D10"></div>
+                    </section>
+                    <section class="column" id="columnEcomputer">
+                        <div class="columnLetter">E</div>
+                        <div id="E1"></div>
+                        <div id="E2"></div>
+                        <div id="E3"></div>
+                        <div id="E4"></div>
+                        <div id="E5"></div>
+                        <div id="E6"></div>
+                        <div id="E7"></div>
+                        <div id="E8"></div>
+                        <div id="E9"></div>
+                        <div id="E10"></div>
+                    </section>
+                    <section class="column" id="columnFcomputer">
+                        <div class="columnLetter">F</div>
+                        <div id="F1"></div>
+                        <div id="F2"></div>
+                        <div id="F3"></div>
+                        <div id="F4"></div>
+                        <div id="F5"></div>
+                        <div id="F6"></div>
+                        <div id="F7"></div>
+                        <div id="F8"></div>
+                        <div id="F9"></div>
+                        <div id="F10"></div>
+                    </section>
+                    <section class="column" id="columnGcomputer">
+                        <div class="columnLetter">G</div>
+                        <div id="G1"></div>
+                        <div id="G2"></div>
+                        <div id="G3"></div>
+                        <div id="G4"></div>
+                        <div id="G5"></div>
+                        <div id="G6"></div>
+                        <div id="G7"></div>
+                        <div id="G8"></div>
+                        <div id="G9"></div>
+                        <div id="G10"></div>
+                    </section>
+                    <section class="column" id="columnHcomputer">
+                        <div class="columnLetter">H</div>
+                        <div id="H1"></div>
+                        <div id="H2"></div>
+                        <div id="H3"></div>
+                        <div id="H4"></div>
+                        <div id="H5"></div>
+                        <div id="H6"></div>
+                        <div id="H7"></div>
+                        <div id="H8"></div>
+                        <div id="H9"></div>
+                        <div id="H10"></div>
+                    </section>
+                    <section class="column" id="columnIcomputer">
+                        <div class="columnLetter">I</div>
+                        <div id="I1"></div>
+                        <div id="I2"></div>
+                        <div id="I3"></div>
+                        <div id="I4"></div>
+                        <div id="I5"></div>
+                        <div id="I6"></div>
+                        <div id="I7"></div>
+                        <div id="I8"></div>
+                        <div id="I9"></div>
+                        <div id="I10"></div>
+                    </section>
+                    <section class="column" id="columnJcomputer">
+                        <div class="columnLetter">J</div>
+                        <div id="J1"></div>
+                        <div id="J2"></div>
+                        <div id="J3"></div>
+                        <div id="J4"></div>
+                        <div id="J5"></div>
+                        <div id="J6"></div>
+                        <div id="J7"></div>
+                        <div id="J8"></div>
+                        <div id="J9"></div>
+                        <div id="J10"></div>
+                    </section>
+                </section>
             </section>
+            <!-- ------------------------End of Computer Board------------------------ -->
         </section>
     </div>
-    
 
-    <script type="text/javascript" src="/js/main.js"></script>
+
+    <button id="new-board">NEW RANDOM BOARD</button>
+
+    <!-- Script should load after all html -->
+    <script type="text/javascript" src="/public/main.js"></script>
   </body>
 </html>
