@@ -151,6 +151,9 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify(objToJson));
     }
 
+    if('makeShot' in params) {
+      // receive the coordinates 'x-y'
+    }
 
     if('student' in params){
       if(params['student']== 'leon'){
