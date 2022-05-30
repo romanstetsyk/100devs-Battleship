@@ -34,6 +34,8 @@ class Board {
     this.misses = [];
     // Array of cells that your opponent hit.
     this.hits = [];
+    // if gameLost is true can't make moves
+    this.gameLost = false;
   }
   // Sets the list of all cells and available cells. The size of the array is h*w
   // This is a helper method for .randomBoard method
@@ -50,6 +52,10 @@ class Board {
     this.allCells = [];
     this.blockedCells = [];
     this.ships = [];
+    this.availShips = [];
+    this.misses = [];
+    this.hits = [];
+    this.gameLost = false;
     this.initBoardSize();
     ArrayOfShipSizes.map(e => this.placeShip(e));
   }
@@ -116,25 +122,52 @@ class Board {
     this.availShips.push(shipCells);
     return
   }
-  // Check if the cell clicked by the opponent contains a ship and update availShips, hits, and misses
-  checkAndUpdate(coord) {
+  // Check if the cell clicked by the opponent contains a ship
+  // Update availShips, hits, misses, checks if the game is lost
+  makeMove(coord) {
+    // Can't make move if the game is lost
+    if (this.gameLost) {
+      return {
+        moveResult: null,
+        remCellsNum: 0,
+        gameLost: this.gameLost,
+      }
+    }
+
     // Check each ship for the coordinate.
     // if found update the hits, if not found update the misses
-    let isFound = false;
-    this.availShips.map(e => {
-      e.forEach((elem, index, arr) => {
-        if (elem === coord) {
-          isFound = true;
-          this.hits.push(coord);
-          arr.splice(index, 1);
+    let moveResult;
+
+    // label statement to break out of nested loops
+    // more info https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
+    loop1:
+      for (let ship of this.availShips) {
+        for (let i = 0; i < ship.length; i += 1) {
+          if (ship[i] === coord) {
+            this.hits.push(coord); // add coord to hits
+            ship.splice(i, 1); // remove coord from availShips
+            // if there are no elements in the array left, then sink is true, otherwise, hit is true
+            moveResult = ship.length ? 'hit' : 'sink';
+            break loop1;
+          }
         }
-      })
-    })
-    if (!isFound) {
-      this.misses.push(coord);
+      }
+
+    if (!moveResult) {
+      moveResult = 'miss';
+      this.misses.push(coord); // add coord to misses
     }
-    // return true if hit, false if missed
-    return isFound;
+
+    // Number of remaining cells needed to hit to lose the game.
+    const remCellsNum = this.availShips.reduce((a,e) => a + e.length, 0);
+    this.gameLost = !Boolean(remCellsNum);
+
+    return {
+      moveResult,
+      remCellsNum,
+      gameLost: this.gameLost,
+    };
+
   }
 }
 
