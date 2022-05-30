@@ -73,11 +73,17 @@ document.querySelector('#computer-board').addEventListener('click', makeMove)
 
 // Event is a click event.
 async function makeMove(event) {
+  // Block the board while callback function runs
+  document.querySelector('#computer-board').classList.add('disabled');
+
   // Event listener is added to the board. The .target property extracts exactly which square was clicked
   let coord = event.target.getAttribute('data-coord');
   console.log(coord);
   // if the table heading is clicked the data parameter is null and there's no need to send a request to server
-  if (!coord) return
+  if (!coord) {
+    document.querySelector('#computer-board').classList.remove('disabled');
+    return
+  }
 
   const res = await fetch(`/api?makeMove=${coord}`);
   const data = await res.json()
@@ -85,6 +91,7 @@ async function makeMove(event) {
 
   let computerBoard = document.querySelector('#computer-board');
   let target = computerBoard.querySelector(`[data-coord="${data.coord}"]`);
+  console.log(data.moveResult);
   switch(data.moveResult) {
     case 'miss':
       target.classList.add('miss');
@@ -99,9 +106,13 @@ async function makeMove(event) {
         computerBoard.querySelector(`[data-coord="${e}"]`).classList.add('sink');
       })
       break;
-    default: // in case an error occurs
+    default: // if clicked on table heading or in case of an error
+      document.querySelector('#computer-board').classList.remove('disabled');
       return
   }
+
+  document.querySelector('#computer-board').classList.remove('disabled');
+
 }
 
 async function compMove() {
@@ -130,7 +141,7 @@ async function compMove() {
           playerBoard.querySelector(`[data-coord="${e}"]`).classList.add('sink');
         })
         break;
-      default: // in case an error occurs
+      default:
         return
     }
 
