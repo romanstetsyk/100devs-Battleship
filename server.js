@@ -34,6 +34,8 @@ class Board {
     this.misses = [];
     // Array of cells that your opponent hit.
     this.hits = [];
+    // Availale cells to make moves. Those that are not misses or hits.
+    this.untouchedCells = [];
     // if gameLost is true can't make moves
     this.gameLost = false;
   }
@@ -43,6 +45,7 @@ class Board {
     for (let i = 0; i < this.height; i += 1) {
       for (let j = 0; j < this.width; j += 1) {
         this.allCells.push(`${i}-${j}`);
+        this.untouchedCells.push(`${i}-${j}`);
       }
     }
   }
@@ -55,6 +58,7 @@ class Board {
     this.availShips = [];
     this.misses = [];
     this.hits = [];
+    this.untouchedCells = [];
     this.gameLost = false;
 
     this.initBoardSize();
@@ -163,6 +167,9 @@ class Board {
       moveResult = 'miss';
       this.misses.push(coord); // add coord to misses
     }
+
+    // remove coord from untouched cells
+    this.untouchedCells.splice(this.untouchedCells.indexOf(coord), 1);
 
     // Number of remaining cells needed to hit to lose the game.
     const remCellsNum = this.availShips.reduce((a,e) => a + e.length, 0);
