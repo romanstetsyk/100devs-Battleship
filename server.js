@@ -56,6 +56,7 @@ class Board {
     this.misses = [];
     this.hits = [];
     this.gameLost = false;
+
     this.initBoardSize();
     ArrayOfShipSizes.map(e => this.placeShip(e));
   }
@@ -69,6 +70,7 @@ class Board {
     let direction = rand(1) ? 'horizontal' : 'vertical';
     
     const shipCells = [];
+    const availShipCells = [];
     let availCells = [];
     let blockedCells = [];
 
@@ -96,7 +98,6 @@ class Board {
       if (availLength === shipSize) {
         availCells.push(this.allCells[k]);
       }
-      // console.log(this.allCells[k].split('-').map(Number), availLength);
     }
     // Choose ramdomly a cell from available cells to start building a ship
     const startingCell = availCells[rand(availCells.length - 1)];
@@ -105,6 +106,7 @@ class Board {
     for (let i = startingCellIndex; i < startingCellIndex + shipSize * step; i += step) {
       // update cells for current ship
       shipCells.push(this.allCells[i]);
+      availShipCells.push(this.allCells[i]);
       // Block adjacent cells
       [
         this.allCells[i],
@@ -119,17 +121,18 @@ class Board {
       })
     }
     this.ships.push(shipCells);
-    this.availShips.push(shipCells);
+    this.availShips.push(availShipCells);
     return
   }
   // Check if the cell clicked by the opponent contains a ship
   // Update availShips, hits, misses, checks if the game is lost
   makeMove(coord) {
-    // Can't make move if the game is lost
-    if (this.gameLost) {
+    // Can't make move if the game is lost or click twice on the same cell
+    if (this.gameLost || this.hits.includes(coord) || this.misses.includes(coord)) {
       return {
+        coord: null,
         moveResult: null,
-        remCellsNum: 0,
+        remCellsNum: this.availShips.reduce((a,e) => a + e.length, 0),
         gameLost: this.gameLost,
       }
     }
@@ -137,7 +140,7 @@ class Board {
     // Check each ship for the coordinate.
     // if found update the hits, if not found update the misses
     let moveResult;
-
+    let sinkedShip = null;
     // label statement to break out of nested loops
     // more info https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label
     loop1:
@@ -148,6 +151,9 @@ class Board {
             ship.splice(i, 1); // remove coord from availShips
             // if there are no elements in the array left, then sink is true, otherwise, hit is true
             moveResult = ship.length ? 'hit' : 'sink';
+            if (moveResult === 'sink') {
+              sinkedShip = this.ships.find(e => e.includes(coord));
+            }
             break loop1;
           }
         }
@@ -163,9 +169,12 @@ class Board {
     this.gameLost = !Boolean(remCellsNum);
 
     return {
+      coord,
       moveResult,
       remCellsNum,
       gameLost: this.gameLost,
+      sinkedShip,
+      as: computer.availShips,
     };
 
   }
@@ -204,7 +213,7 @@ const server = http.createServer((req, res) => {
       player = new Board(10,10);
       player.randomBoard([5,4,3,3,2]);
 
-      computer = new Board(5, 5);
+      computer = new Board(10,10);
       computer.randomBoard([5,4,3,3,2]);
 
       res.writeHead(200, {'Content-Type': 'application/json'});
@@ -216,15 +225,14 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify(objToJson));
     }
 
-    if('makeShot' in params) {
+    if('makeMove' in params) {
       // This condition is true if the player clicks on any square on the computer's board.
       // It receives the coordinates 'x-y' as a parameter
       // check if the 'x-y' is in the computer.ships array
-      // Send back the response object 
-      // // {
-      //  coord: 'x-y',
-      //  result: 'hit' or 'miss' 
-      // }
+      // Send back the response object
+      let move = computer.makeMove(params['makeMove']);
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify(move));
     }
 
     if('student' in params){

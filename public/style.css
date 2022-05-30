@@ -50,7 +50,7 @@ section div{
 }
 
 .my-ship {
-  background-color: red;
+  background-color:salmon;
 }
 
 /* ------------------------End of Player Board------------------------ */
@@ -76,3 +76,14 @@ section div{
 
 
 /* ------------------------End of Computer Board------------------------ */
+
+
+.miss {
+  background-color: aliceblue;
+}
+.hit {
+  background-color: yellow;
+}
+.sink {
+  background-color: red;
+}

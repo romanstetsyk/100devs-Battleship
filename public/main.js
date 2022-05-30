@@ -66,16 +66,32 @@ async function randomize() {
 
 
 
-document.querySelector('#computer-board').addEventListener('click', makeShot)
+document.querySelector('#computer-board').addEventListener('click', makeMove)
 
-async function makeShot(event) {
+async function makeMove(event) {
 
   let coord = event.target.getAttribute('data-coord');
   console.log(coord);
   // if the table heading is clicked the data parameter is null and there's no need to send a request to server
   if (!coord) return
 
-  const res = await fetch(`/api?makeShot=${coord}`);
+  const res = await fetch(`/api?makeMove=${coord}`);
   const data = await res.json()
   console.log(data);
+
+  let computerBoard = document.querySelector('#computer-board');
+  let target = computerBoard.querySelector(`[data-coord="${data.coord}"]`);
+  switch(data.moveResult) {
+    case 'miss':
+      target.classList.add('miss');
+      break;
+    case 'hit':
+      target.classList.add('hit');
+      break;
+    case 'sink':
+      data.sinkedShip.forEach(e => {
+        computerBoard.querySelector(`[data-coord="${e}"]`).setAttribute('class', 'sink');
+      })
+      break;
+  }
 }
