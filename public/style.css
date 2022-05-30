@@ -87,3 +87,6 @@ section div{
 .sink {
   background-color: red;
 }
+.disabled {
+  pointer-events: none;
+}

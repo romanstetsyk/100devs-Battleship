@@ -11,6 +11,9 @@
 //   document.querySelector("#gameOutcome").textContent = data.gameOutcome
 // }
 
+// A function to set the delay. ref: https://stackoverflow.com/a/51200649/14469997
+const wait = delay => new Promise(resolve => setTimeout(resolve, delay));
+
 
 // This function creates a board that looks the same as Mili did.
 // It was easier to create a board in JS than to target each square with the ship in it separately.
@@ -68,8 +71,9 @@ async function randomize() {
 
 document.querySelector('#computer-board').addEventListener('click', makeMove)
 
+// Event is a click event.
 async function makeMove(event) {
-
+  // Event listener is added to the board. The .target property extracts exactly which square was clicked
   let coord = event.target.getAttribute('data-coord');
   console.log(coord);
   // if the table heading is clicked the data parameter is null and there's no need to send a request to server
@@ -84,14 +88,53 @@ async function makeMove(event) {
   switch(data.moveResult) {
     case 'miss':
       target.classList.add('miss');
+      await wait(500); // Slow down the computer move
+      compMove();
       break;
     case 'hit':
       target.classList.add('hit');
       break;
     case 'sink':
       data.sinkedShip.forEach(e => {
-        computerBoard.querySelector(`[data-coord="${e}"]`).setAttribute('class', 'sink');
+        computerBoard.querySelector(`[data-coord="${e}"]`).classList.add('sink');
       })
       break;
+    default: // in case an error occurs
+      return
+  }
+}
+
+async function compMove() {
+
+  let playerBoard = document.querySelector('#player-board');
+  
+  // make move until the first miss
+  while(true) {
+    const res = await fetch(`/api?compMove=${true}`);
+    const data = await res.json()
+    console.log(data);
+
+    console.log(data.coord);
+
+    let target = playerBoard.querySelector(`[data-coord="${data.coord}"]`);
+
+    switch(data.moveResult) {
+      case 'miss':
+        target.classList.add('miss');
+        return;
+      case 'hit':
+        target.classList.add('hit');
+        break;
+      case 'sink':
+        data.sinkedShip.forEach(e => {
+          playerBoard.querySelector(`[data-coord="${e}"]`).classList.add('sink');
+        })
+        break;
+      default: // in case an error occurs
+        return
+    }
+
+    await wait(500);
+
   }
 }

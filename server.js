@@ -170,7 +170,7 @@ class Board {
 
     // remove coord from untouched cells
     this.untouchedCells.splice(this.untouchedCells.indexOf(coord), 1);
-
+    
     // Number of remaining cells needed to hit to lose the game.
     const remCellsNum = this.availShips.reduce((a,e) => a + e.length, 0);
     this.gameLost = !Boolean(remCellsNum);
@@ -214,7 +214,7 @@ const server = http.createServer((req, res) => {
   }
   
   else if (page == '/api') {
-    console.log('request to api went through');
+
     if('newBoard' in params) {
 
       player = new Board(10,10);
@@ -238,6 +238,15 @@ const server = http.createServer((req, res) => {
       // check if the 'x-y' is in the computer.ships array
       // Send back the response object
       let move = computer.makeMove(params['makeMove']);
+      res.writeHead(200, {'Content-Type': 'application/json'});
+      res.end(JSON.stringify(move));
+    }
+
+    if('compMove' in params) {
+      // Computer makes a move
+      // Pick a cell randomly from untouchedCells      
+      let randNum = Math.floor(Math.random() * (player.untouchedCells.length + 1));
+      let move = player.makeMove(player.untouchedCells[randNum]);
       res.writeHead(200, {'Content-Type': 'application/json'});
       res.end(JSON.stringify(move));
     }
