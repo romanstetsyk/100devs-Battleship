@@ -95,8 +95,8 @@ async function makeMove(event) {
   switch(data.moveResult) {
     case 'miss':
       target.classList.add('miss');
-      await wait(500); // Slow down the computer move
-      compMove();
+      await wait(300); // Slow down the computer move
+      compMove(); // Computer's move
       break;
     case 'hit':
       target.classList.add('hit');
@@ -112,7 +112,8 @@ async function makeMove(event) {
   }
 
   document.querySelector('#computer-board').classList.remove('disabled');
-
+  await wait(300);
+  if (data.gameLost) alert('You Won!');
 }
 
 async function compMove() {
@@ -145,7 +146,8 @@ async function compMove() {
         return
     }
 
-    await wait(500);
+    await wait(300);
+    if (data.gameLost) alert('You Got Got');
 
   }
 }
