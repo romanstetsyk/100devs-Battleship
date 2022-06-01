@@ -1,16 +1,3 @@
-// document.querySelector('#clickMe').addEventListener('click', makeReq)
-
-// async function makeReq(){
-//   const userName = document.querySelector("#userName").value;
-//   const res = await fetch(`/api?student=${userName}`)
-//   const data = await res.json()
-
-//   console.log(data);
-//   document.querySelector("#playerResult").textContent = data.playerResult
-//   document.querySelector("#computerResult").textContent = data.computerResult
-//   document.querySelector("#gameOutcome").textContent = data.gameOutcome
-// }
-
 // A function to set the delay. ref: https://stackoverflow.com/a/51200649/14469997
 const wait = delay => new Promise(resolve => setTimeout(resolve, delay));
 
