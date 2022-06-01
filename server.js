@@ -3,13 +3,6 @@ const fs = require('fs')
 const url = require('url');
 const querystring = require('querystring');
 const figlet = require('figlet')
-// const express = require("express")
-
-// // installed express module and created a constant app in order to host this website publically via glitch on port 3000
-// const app = express()
-// app.use(express.json())
-// app.use(express.static("public"))
-
 
 // After instantiating call .initBoardSize(height, width) method to set the height, width, and allCells properties.
 // allCells is an array where each element is 'x-y'. x and y coordinates are separated by dashes. It's easy to parse them later like this using .split('-').
@@ -250,30 +243,10 @@ const server = http.createServer((req, res) => {
       res.writeHead(200, {'Content-Type': 'application/json'});
       res.end(JSON.stringify(move));
     }
-
-    if('student' in params){
-      if(params['student']== 'leon'){
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        const objToJson = {
-          name: "leon",
-          status: "Boss Man",
-          currentOccupation: "Baller"
-        }
-        res.end(JSON.stringify(objToJson));
-      }//student = leon
-      else if(params['student'] != 'leon'){
-        res.writeHead(200, {'Content-Type': 'application/json'});
-        const objToJson = {
-          playerResult: "unknown",
-          computerResult: "unkown",
-          gameOutcome: "unknown"
-        }
-        res.end(JSON.stringify(objToJson));
-      }//student != leon
-    }//student if
-  }//else if
+  }
   else if (page == '/public/style.css'){
     fs.readFile('public/style.css', function(err, data) {
+      res.writeHead(200, {'Content-Type': 'text/css'});
       res.write(data);
       res.end();
     });
