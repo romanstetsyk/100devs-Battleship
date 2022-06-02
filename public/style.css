@@ -1,26 +1,67 @@
+
+
+body{
+  height:100%;
+  background-color: rgb(16, 145, 144);
+  color:rgb(208, 221, 227);
+  margin:0;
+}
+
 header *{
   text-align: center;
 }
 
-body{
-  background-color: lightblue;
+header{
+  height:400px;
+  width:100%;
+  background-image: url("../imgs/header.jpg");
+  background-size:cover;
+  background-repeat:no-repeat;
+  background-position: bottom;
+  margin-bottom: 50px;
+  font-family:'Oswald', san-serif;
 }
 
-
-.about{
-  margin-top: 35px;
+.header-overlay{
+  height:100%;
+  width:100%;
+  background:linear-gradient(rgb(21, 53, 28,0.7), transparent);
 }
 
+.header-overlay h1{
+  margin:0;
+  padding-top: 20px;
+  font-size: 4.5rem;
+  letter-spacing: 5px;
+}
+
+.header-overlay h2{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0;
+  font-size:1.5rem;
+  letter-spacing: 2px;
+}
+
+.header-overlay h2 img{
+  width:50px;
+  margin:5px;
+}
 
 .game{
   display: flex;
   justify-content: space-around;
-  margin-bottom: 100px;
+}
+
+.game h2{
+  font-family: 'Oswald';
+  letter-spacing: 2px;
 }
 
 section div{
-  background-color:teal;
-  border: 1px black solid;
+  background-color:rgb(21, 53, 28,0.7);
+  border: 1.5px rgb(12, 125, 179) solid;
   display:flex;
   align-items: center;
   justify-content: center;
@@ -78,7 +119,63 @@ section div{
 
 
 /* ------------------------End of Computer Board------------------------ */
+.new-board{
+  height:100px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
 
+h4, .new-board-btn{
+  background-color: rgb(21, 53, 28,0.4);
+  border: 1px solid rgb(208, 221, 227, 0.5);
+  color:rgb(208, 221, 227);
+  width:200px;
+  height:50px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.new-board-btn:hover{
+  background-color:rgb(208, 221, 227,0.4);
+  color:rgb(21, 53, 28)
+}
+
+ .instructions-pg{
+   display:flex;
+   width:100%;
+   justify-content: center;
+ }
+
+.instructions-pg h4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:50px;
+  width:300px;
+  font-size:1.3rem;
+  margin-top: 0;
+}
+
+.instructions-pg h4 a{
+  color:rgb(208, 221, 227);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding:5px;
+}
+
+.instructions-pg h4 a:visited{
+  color:rgb(208, 221, 227);
+}
+
+.instructions-pg h4:hover{
+  background-color:rgb(208, 221, 227,0.4);
+}
+
+.instructions-pg h4 a:hover{
+  color:rgb(21, 53, 28)
+}
 
 .miss {
   background-color: aliceblue;
