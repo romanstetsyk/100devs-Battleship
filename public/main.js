@@ -38,6 +38,13 @@ function createBoard(parentElement, height, width, shipCoords = null) {
   }
 }
 
+function addMessage(msg) {
+  const msgBoard = document.querySelector('.messages');
+  const p = document.createElement('p');
+  p.textContent = msg;
+  msgBoard.appendChild(p);
+  p.scrollIntoView();
+}
 
 document.querySelector('#new-board').addEventListener('click', randomize)
 
@@ -49,6 +56,9 @@ async function randomize() {
 
   let playerBoard = document.querySelector('#player-board');
   let computerBoard = document.querySelector('#computer-board');
+
+  //Clear the messages
+  document.querySelector('.messages').innerHTML = '';
 
   createBoard(playerBoard, +data.height, +data.width, data.ships) // players board show ships
   createBoard(computerBoard, +data.height, +data.width)
@@ -65,7 +75,6 @@ async function makeMove(event) {
 
   // Event listener is added to the board. The .target property extracts exactly which square was clicked
   let coord = event.target.getAttribute('data-coord');
-  console.log(coord);
   // if the table heading is clicked the data parameter is null and there's no need to send a request to server
   if (!coord) {
     document.querySelector('#computer-board').classList.remove('disabled');
@@ -82,16 +91,20 @@ async function makeMove(event) {
   switch(data.moveResult) {
     case 'miss':
       target.classList.add('miss');
+      addMessage('You missed');
       await wait(50); // Slow down the computer move
       compMove(); // Computer's move
       break;
     case 'hit':
       target.classList.add('hit');
+      addMessage('You hit!');
+      addMessage('Your move');
       break;
     case 'sink':
       data.sinkedShip.forEach(e => {
         computerBoard.querySelector(`[data-coord="${e}"]`).classList.add('sink');
       })
+      addMessage('You sank computer\'s ship!');
       break;
     default: // if clicked on table heading or in case of an error
       document.querySelector('#computer-board').classList.remove('disabled');
@@ -100,7 +113,7 @@ async function makeMove(event) {
 
   document.querySelector('#computer-board').classList.remove('disabled');
   await wait(50);
-  if (data.gameLost) alert('You Won!');
+  if (data.gameLost) addMessage('YOU WON!');
 }
 
 async function compMove() {
@@ -120,21 +133,24 @@ async function compMove() {
     switch(data.moveResult) {
       case 'miss':
         target.classList.add('miss');
+        addMessage('Computer missed');
+        addMessage('Your move');
         return;
       case 'hit':
         target.classList.add('hit');
+        addMessage('Computer hit your ship');
         break;
       case 'sink':
         data.sinkedShip.forEach(e => {
           playerBoard.querySelector(`[data-coord="${e}"]`).classList.add('sink');
         })
+        addMessage('Computer sank your ship!');
         break;
       default:
         return
     }
 
     await wait(50);
-    if (data.gameLost) alert('You Got Got');
-
+    if (data.gameLost) addMessage('You lost..');
   }
 }
