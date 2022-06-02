@@ -2,13 +2,25 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <title>DONT GET GOT!</title>
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="./public/style.css">
   </head>
   <body>
-    <h1>Battleships</h1>
-    
-     <div class="container">
+    <header>
+        <div class="header-overlay">
+            <h1>DON'T GET GOT</h1>
+            <h2><img alt="100devs Leon Logo" src="./imgs/logo.png">Battleships - The 100Devs Version<img alt="100devs Leon Logo" src="./imgs/logo.png"></h2>
+        </div>
+    </header>
+    <main>
+     <div class="instructions-pg" >
+        <h4 > <a href="/instructions">Instructions / About</a> </h4>
+    </div>
+    <div class="container">
         <section class="game">
             <!-- ------------------------Start of Player Board------------------------ -->
             <section class="board my-board">
@@ -316,10 +328,12 @@
         </section>
     </div>
     
-    <button id="new-board">NEW RANDOM BOARD</button>
-    <h4> <a href="/instructions">Instructions</a> </h4>
-    
+    <div class="new-board">
+        <button id="new-board" class="new-board-btn" >NEW RANDOM BOARD</button> 
+    </div>
+
+    </main>
     <!-- Script should load after all html -->
-    <script type="text/javascript" src="/public/main.js"></script>
+    <script type="text/javascript" src="./public/main.js"></script>
   </body>
 </html>
